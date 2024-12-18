@@ -11,8 +11,10 @@ export interface Posts {
 
 export default async function Blog() {
   try {
-    // Use environment variable or fallback to relative URL
-    const res = await fetch(process.env.NEXT_PUBLIC_API_URL || "/api/posts");
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "/api/posts";
+    console.log("Fetching posts from:", apiUrl); // Add logging to check the URL
+
+    const res = await fetch(apiUrl);
 
     if (!res.ok) {
       throw new Error("Failed to fetch posts");
